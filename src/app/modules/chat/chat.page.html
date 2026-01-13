@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar> Chat </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        class="message-list-col"
+        size="12"
+        sizeMd="12"
+        sizeLg="12"
+        sizeXl="6"
+        offsetXl="3"
+      >
+        <ion-list
+          class="message-list"
+          lines="none"
+        >
+          @for (message of messageService.messages(); track message.id) {
+          <ion-item class="message-list-item">
+            <div class="message-list-item-avatar">
+              <img
+                [src]="message.author.photoUrl"
+                alt="User avatar"
+                class="message-list-item-avatar-image"
+              />
+            </div>
+            <div class="message-list-item-text">
+              <div class="message-list-item-text-meta">
+                <span class="message-list-item-text-username">
+                  {{ message.author.username }}
+                </span>
+                <span class="message-list-item-text-timestamp">
+                  {{ message.createdAt?.toMillis() | date:"HH:mm" }}
+                </span>
+              </div>
+              <p class="message-list-item-text-content">
+                {{ message.content }}
+              </p>
+            </div>
+          </ion-item>
+          }
+          <div #dummy></div>
+        </ion-list>
+      </ion-col>
+
+      <ion-col
+        class="user-list-col ion-display-none ion-display-xl-block"
+        size-xl="3"
+      >
+        <ion-list class="user-list">
+          @for (user of userService.users(); track user.uid) {
+          <ion-item class="user-list-item">
+            <div>
+              <img
+                [src]="user.photoUrl"
+                alt="User avatar"
+              />
+            </div>
+            <span> {{ user.username }} </span>
+          </ion-item>
+          }
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col
+          class="message-input-col"
+          size="12"
+          sizeMd="12"
+          sizeLg="6"
+          offsetLg="3"
+        >
+          <div class="message-textarea-container">
+            <ion-textarea
+              class="message-textarea"
+              [autoGrow]="true"
+              (keydown.enter)="sendMessage($event)"
+              [(ngModel)]="message"
+              fill="outline"
+            >
+            </ion-textarea>
+            <ion-button
+              class="message-send-button"
+              (click)="sendMessage()"
+            >
+              <ion-icon name="send"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
+
+<!--         <ion-col size="2" sizeMd="1" sizeLg="1">
+          <ion-button (click)="sendMessage()">
+            <ion-icon name="send"></ion-icon>
+          </ion-button>
+        </ion-col> -->

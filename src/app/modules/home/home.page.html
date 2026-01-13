@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+
+  <ion-segment value="signin">
+    <ion-segment-button value="signin" content-id="signin">
+      <ion-label>Sign in</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="signup" content-id="signup">
+      <ion-label>Sign up</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-segment-view>
+    <ion-segment-content id="signin" class="signin-container ion-text-center">
+
+      <ion-list>
+        <ion-item>
+          <ion-input label="Email" labelPlacement="stacked"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Password" labelPlacement="stacked"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <ion-button (click)="signIn()">Sign in with google</ion-button>
+
+
+
+    </ion-segment-content>
+
+    <ion-segment-content id="signup" class="signup-container">
+      yoyoyoy
+    </ion-segment-content>
+
+  </ion-segment-view>
+
+</ion-content>
